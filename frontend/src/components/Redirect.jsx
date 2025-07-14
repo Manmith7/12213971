@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Log } from  '../../../Logging middleware/log.js';
+import {Log} from '../../../Logging middleware/log.js'
 
 function RedirectHandler() {
   const { shortcode } = useParams();
@@ -10,7 +10,7 @@ function RedirectHandler() {
     const item = localStorage.getItem(shortcode);
 
     if (!item) {
-      Log("frontend", "error", "redirect", `Shortcode ${shortcode} not found`);
+      Log("frontend", "error", "page", `Shortcode ${shortcode} not found`);
       navigate("/");
       return;
     }
@@ -19,12 +19,12 @@ function RedirectHandler() {
     const now = new Date().getTime();
 
     if (now > parsed.expiry) {
-      Log("frontend", "error", "redirect", `Shortcode ${shortcode} expired`);
+      Log("frontend", "error", "page", `Shortcode ${shortcode} expired`);
       navigate("/");
       return;
     }
 
-    Log("frontend", "info", "redirect", `Redirecting to ${parsed.originalUrl}`);
+    Log("frontend", "info", "page", `Redirecting to ${parsed.originalUrl}`);
     window.location.href = parsed.originalUrl;
   }, [shortcode, navigate]);
 

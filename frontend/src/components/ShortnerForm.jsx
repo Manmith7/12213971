@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Log } from  '../../../Logging middleware/log.js';
+import {Log} from '../../../Logging middleware/log.js'
 import { useNavigate } from 'react-router-dom';
 
 function ShortnerForm() {
@@ -23,19 +23,19 @@ function ShortnerForm() {
   const handleSubmit = () => {
     if (!url) {
       setError("URL is required");
-      Log("frontend", "error", "validation", "Empty URL");
+      Log("frontend", "error", "component", "Empty URL");
       return;
     }
 
     if (!isValidURL(url)) {
       setError("Invalid URL format");
-      Log("frontend", "error", "validation", "Invalid URL format");
+      Log("frontend", "error", "component", "Invalid URL format");
       return;
     }
 
     if (expire <= 0) {
       setError("Expiry should be greater than 0");
-      Log("frontend", "error", "validation", "Invalid expiry time");
+      Log("frontend", "error", "component", "Invalid expiry time");
       return;
     }
 
@@ -49,7 +49,7 @@ function ShortnerForm() {
 
     localStorage.setItem(code, JSON.stringify(saveData));
 
-    Log("frontend", "info", "shortener", `Short URL created: ${code}`);
+    Log("frontend", "info", "component", `Short URL created: ${code}`);
 
     setResult({
       shortUrl: `${window.location.origin}/${code}`,

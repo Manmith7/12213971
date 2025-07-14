@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Log } from  '../../../Logging middleware/log.js';
+import {Log} from '../../../Logging middleware/log.js'
 import { Link } from 'react-router-dom';
 
 function ShortnerStats() {
@@ -24,7 +24,7 @@ function ShortnerStats() {
     });
 
     setUrls(data);
-    Log("frontend", "info", "stats", "Loaded stats page");
+    Log("frontend", "info", "component", "Loaded stats page");
   }, []);
 
   return (
